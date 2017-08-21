@@ -1,3 +1,3 @@
 class Account < ApplicationRecord
-  has_many :time_entries
+  has_many :account_entires
 end

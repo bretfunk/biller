@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821020620) do
+ActiveRecord::Schema.define(version: 20170821022011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_entries", force: :cascade do |t|
+    t.float "time"
+    t.bigint "customer_id"
+    t.bigint "employee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.index ["customer_id"], name: "index_account_entries_on_customer_id"
+    t.index ["employee_id"], name: "index_account_entries_on_employee_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "type"
@@ -22,16 +33,6 @@ ActiveRecord::Schema.define(version: 20170821020620) do
     t.string "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "time_entries", force: :cascade do |t|
-    t.float "time"
-    t.bigint "customer_id"
-    t.bigint "employee_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_time_entries_on_customer_id"
-    t.index ["employee_id"], name: "index_time_entries_on_employee_id"
   end
 
 end
